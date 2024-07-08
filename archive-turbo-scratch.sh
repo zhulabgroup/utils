@@ -10,4 +10,10 @@
 
 cd /nfs/turbo/seas-zhukai/archives/${AF}
 module load archivetar
-archivetar --prefix ${AF} --zstd --bundle-path /scratch/zhukai_root/zhukai0/${UN} --destination-dir /nfs/dataden/seas-zhukai/${AF} --rm-at-files
+archivetar --prefix ${AF} --zstd --bundle-path /scratch/zhukai_root/zhukai0/${UN} --size 100G
+
+# Download this bash script to your home directory
+# Make it executable
+# chmod +x archive-turbo-scratch.sh
+# Use it with the following command
+# sbatch --export=AF=<target folder> --export=UN=<unique name> --job-name=<job name> archive-turbo-scratch.sh
