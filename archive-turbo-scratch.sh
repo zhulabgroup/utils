@@ -17,3 +17,5 @@ archivetar --prefix ${AF} --zstd --bundle-path /scratch/zhukai_root/zhukai0/${UN
 # chmod +x archive-turbo-scratch.sh
 # Use it with the following command
 # sbatch --export=AF=<target folder> --export=UN=<unique name> --job-name=<job name> archive-turbo-scratch.sh
+# After Slurm job is completed, copy tar files from scratch to data den on Globus
+# Once transfer to data den on Globus is completed, feel free to delete related files from turbo and scratch
