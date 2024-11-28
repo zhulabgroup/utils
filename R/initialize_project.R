@@ -1,7 +1,8 @@
-initialize_project <- function(project_path = ".", overwrite_gitignore = FALSE) {
+initialize_project <- function(project_path = ".", subfolders = c("R", "tests", "vignettes"), overwrite_gitignore = FALSE) {
   #' Initialize an R project folder with standard subfolders and a .gitignore file.
   #'
   #' @param project_path Path to the project root directory, default is current directory.
+  #' @param subfolders A character vector of subfolder names to create, default is c("R", "tests", "vignettes").
   #' @param overwrite_gitignore Logical, whether to overwrite existing .gitignore file, default is FALSE.
   #'
   #' @return Logical value indicating if the initialization was successful.
@@ -12,11 +13,8 @@ initialize_project <- function(project_path = ".", overwrite_gitignore = FALSE) 
   #' # Initialize project folders and .gitignore in a specified directory
   #' initialize_project("/path/to/your/project")
   #'
-  #' # Initialize project folders and overwrite existing .gitignore file
-  #' initialize_project("/path/to/your/project", overwrite_gitignore = TRUE)
-
-  # Define subfolders
-  subfolders <- c("R", "tests", "vignettes")
+  #' # Initialize project folders with custom subfolders and overwrite existing .gitignore file
+  #' initialize_project("/path/to/your/project", subfolders = c("R", "data", "docs"), overwrite_gitignore = TRUE)
 
   # Create the subfolders if they do not exist
   for (folder in subfolders) {
