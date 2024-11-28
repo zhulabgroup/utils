@@ -6,7 +6,17 @@ create_symlink_turbo <- function(project_symlink, turbo_target) {
   #'
   #' @return Logical value indicating if the symbolic link was successfully created.
   #' @examples
-  #' create_symlink_turbo("data", "project-folder")
+  #' create_symlink_turbo("data", "proj-wildfire-trait")
+
+  # List of required packages
+  required_packages <- c("here", "R.utils")
+
+  # Check and install required packages
+  for (pkg in required_packages) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      install.packages(pkg)
+    }
+  }
 
   # Detect operating system
   os_name <- Sys.info()[["sysname"]]
