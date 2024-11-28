@@ -32,6 +32,10 @@ initialize_project()
 initialize_project("/path/to/your/project")
 
 # Initialize project folders with custom subfolders and overwrite existing .gitignore file
-initialize_project("/path/to/your/project", subfolders = c("R", "data", "docs"), overwrite_gitignore = TRUE)
+initialize_project(
+  project_path = "/path/to/your/project",
+  subfolders = c("R", "data", "docs"),
+  overwrite_gitignore = TRUE
+)
 }
 }

@@ -1,5 +1,5 @@
 #' Initialize R Project
-#' 
+#'
 #' Initialize an R project folder with standard subfolders and a .gitignore file.
 #'
 #' @param project_path Path to the project root directory, default is current directory.
@@ -16,7 +16,11 @@
 #' initialize_project("/path/to/your/project")
 #'
 #' # Initialize project folders with custom subfolders and overwrite existing .gitignore file
-#' initialize_project("/path/to/your/project", subfolders = c("R", "data", "docs"), overwrite_gitignore = TRUE)
+#' initialize_project(
+#'   project_path = "/path/to/your/project",
+#'   subfolders = c("R", "data", "docs"),
+#'   overwrite_gitignore = TRUE
+#' )
 #' }
 #' @export
 initialize_project <- function(project_path = ".", subfolders = c("R", "tests", "vignettes"), overwrite_gitignore = FALSE) {
@@ -30,7 +34,7 @@ initialize_project <- function(project_path = ".", subfolders = c("R", "tests", 
       message("Folder already exists: ", folder_path)
     }
   }
-  
+
   # Define .gitignore content
   gitignore_content <- "
 # Project folders
@@ -97,10 +101,10 @@ rsconnect/
 # local files
 xc_local*
 "
-  
+
   # Path to .gitignore file
   gitignore_path <- file.path(project_path, ".gitignore")
-  
+
   # Check if .gitignore file already exists and whether to overwrite it
   if (!file.exists(gitignore_path) || overwrite_gitignore) {
     # Write .gitignore file to the project root
@@ -109,6 +113,6 @@ xc_local*
   } else {
     message(".gitignore file already exists at: ", gitignore_path)
   }
-  
+
   return(TRUE)
 }
