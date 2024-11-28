@@ -4,6 +4,12 @@ initialize_project <- function(project_path = ".") {
   #' @param project_path Path to the project root directory, default is current directory.
   #'
   #' @return Logical value indicating if the initialization was successful.
+  #' @examples
+  #' # Initialize project folders and .gitignore in the current directory
+  #' initialize_project()
+  #'
+  #' # Initialize project folders and .gitignore in a specified directory
+  #' initialize_project("/path/to/your/project")
 
   # Define subfolders
   subfolders <- c("R", "tests", "vignettes")
