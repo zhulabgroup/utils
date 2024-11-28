@@ -1,3 +1,5 @@
+#' Initialize R Project
+#' 
 #' Initialize an R project folder with standard subfolders and a .gitignore file.
 #'
 #' @param project_path Path to the project root directory, default is current directory.
