@@ -3,6 +3,10 @@ create_symlink_turbo <- function(project_symlink, turbo_target) {
   #'
   #' @param project_symlink Path relative to the project root where the symbolic link will be created.
   #' @param turbo_target Path relative to the Turbo mount point.
+  #'
+  #' @return Logical value indicating if the symbolic link was successfully created.
+  #' @examples
+  #' create_symlink_turbo("data", "project-folder")
 
   # Detect operating system
   os_name <- Sys.info()[["sysname"]]
@@ -12,7 +16,7 @@ create_symlink_turbo <- function(project_symlink, turbo_target) {
     Darwin = "/Volumes/seas-zhukai", # macOS
     Linux = "/nfs/turbo/seas-zhukai", # Linux
     Windows = "Z:\\", # Windows
-    stop("Unsupported operating system:", os_name)
+    stop("Unsupported operating system: ", os_name)
   )
 
   # Construct target and symlink paths
@@ -20,21 +24,26 @@ create_symlink_turbo <- function(project_symlink, turbo_target) {
   project_root <- here::here()
   symlink <- file.path(project_root, project_symlink)
 
-  # Check if symlink exists and is valid
-  symlink_exists <- if (os_name == "Windows") {
-    file.exists(symlink)
-  } else {
-    file.exists(symlink) && (Sys.readlink(symlink) == target)
+  # Check if symlink already exists and is valid
+  symlink_exists <- file.exists(symlink)
+  valid_symlink <- FALSE
+  
+  if (symlink_exists) {
+    if (os_name == "Windows") {
+      valid_symlink <- symlink_exists
+    } else {
+      valid_symlink <- (Sys.readlink(symlink) == target)
+    }
   }
 
-  # If symlink is valid, avoid recreating it to save time
-  if (symlink_exists) {
+  # Avoid recreating valid symlink
+  if (valid_symlink) {
     message("Valid symbolic link already exists: ", symlink, " -> ", target)
     return(TRUE)
   }
 
-  # Remove existing symlink if it exists but is not valid
-  if ((os_name == "Windows" && file.exists(symlink)) || (os_name != "Windows" && (file.exists(symlink) || !is.na(Sys.readlink(symlink))))) {
+  # Remove existing invalid symlink
+  if (symlink_exists) {
     message("Removing existing symlink: ", symlink)
     unlink(symlink, recursive = TRUE)
   }
@@ -44,7 +53,7 @@ create_symlink_turbo <- function(project_symlink, turbo_target) {
     Darwin = file.symlink(target, symlink), # macOS
     Linux = file.symlink(target, symlink), # Linux
     Windows = R.utils::createLink(symlink, target), # Windows
-    stop("Unsupported operating system:", os_name)
+    stop("Unsupported operating system: ", os_name)
   )
 
   # Report success or failure
