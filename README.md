@@ -1,10 +1,6 @@
 # zhulabtools: Tools for Zhu Lab at UMich
 
-This repository contains a collection of tools for managing projects and data in the Zhu Lab at the University of Michigan.
-
-- [R](R/) - Folder for R scripts and functions.
-- [man](man/) - Folder for manuals containing documentation files for functions.
-- [shell](shell/) - Folder for bash scripts.
+This branch contains a collection of R tools for managing projects and data in the Zhu Lab at the University of Michigan.
 
 ## Installation
 
