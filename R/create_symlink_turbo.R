@@ -13,16 +13,6 @@
 #' }
 #' @export
 create_symlink_turbo <- function(project_symlink, turbo_target, turbo_volume = "seas-zhukai") {
-  # List of required packages
-  required_packages <- c("here", "R.utils")
-  
-  # Check and install required packages
-  for (pkg in required_packages) {
-    if (!requireNamespace(pkg, quietly = TRUE)) {
-      install.packages(pkg)
-    }
-  }
-  
   # Detect operating system
   os_name <- Sys.info()[["sysname"]]
   
