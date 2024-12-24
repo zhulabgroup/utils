@@ -97,9 +97,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
-
-# local files
-xc_local*
 "
 
   # Path to .gitignore file
